@@ -1,0 +1,16 @@
+body {
+    background: url(../images/background.png) 0% 0%/ cover no-repeat;
+}
+
+.container-fluid {
+    width: 700px;
+    margin: auto;
+}
+
+.title {
+    background-color: #6a8065;
+    margin-top: 20px;
+    height: 100px;
+    color: #aaad9d;
+    fo
+}
