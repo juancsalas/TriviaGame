@@ -1,7 +1,6 @@
 $(document).ready(function () {    
 
-    // All the arrays or objects, containg questions, answers, images, and fun facts
-
+    // Array that holds the questions
     var questions = [
         "1. What is the name of the town Parks and Recreation is set in?",
         "2. Which alter ego eventually earns Andy Dwyer a TV Show?",
@@ -9,7 +8,7 @@ $(document).ready(function () {
         "4. What is the name of the land/pit that started it all?",
         "5. Finish this Ron Swanson quote: “Fishing relaxes me. It’s like yoga, except _____”",
         "6. What gift does Leslie give Ben for their Anniversary?",
-        "7. Which of the following names is not associated with Gergich?",
+        "7. Which of the following names is NOT associated with Gergich?",
         "8. What is Tom and Donna’s favorite holiday of the year?",
         "9. What neighboring town did Pawnee celebrate it’s Unity Concert with?",
         "10. What is the one thing Ron hates more than lying?",
@@ -18,13 +17,14 @@ $(document).ready(function () {
         "13. Fill in the blank: “Bye, bye, Li’l Sebastian! __________”",
         "14. Where do Ann and Chris eventually move to?",
         "15. What multiplayer game does Ben invent?",
-        "16. Ron has only seen three movies in his life. Which of the following is not one of them?",
+        "16. Ron has only seen three movies in his life. Which of the following is NOT one of them?",
         "17. What is Leslie’s favorite food?",
         "18. What phrase does Chris Traeger uses constantly?",
-        "19. Which company did Tom not own?",
+        "19. Which company did Tom NOT own?",
         "20. Who is Ron’s surprising alter ego?"
     ];
 
+    // Object that holds all possible ansswers to each question divided by array representative of the question number
     var possibleAnswers = {
         1: [  
             "Scranton, PA", 
@@ -57,10 +57,10 @@ $(document).ready(function () {
             "“It’s an American tradition, unlike yoga, which is from India.”",
         ],
         6: [
-            "A replica of Luke’s lightsaber",
-            "A replica of the Iron Throne from Game of Thrones",
-            "A replica of Captain America’s shield",
-            "A replica of the Green morpher from Mighty Morphing Power Rangers"
+            "Luke’s lightsaber",
+            "The Iron Throne from Game of Thrones",
+            "Captain America’s shield",
+            "The Green morpher from Power Rangers"
         ],
         7: [
             "Terry",
@@ -145,43 +145,45 @@ $(document).ready(function () {
             "Duke Silver",
             "Art Vandelays",
             "Roger Draper"
-        ]
-    };
+    ]}
 
-    var correctAnswers = ["Pawnee, IN","Johnny Karate","Calzones","Lot 48","“I still get to kill something.”","A replica of the Iron Throne from Game of Thrones","Berry","Treat Yo’ Self","Eagleton","Skim Milk","Lil’ Sebastian","Joe Biden","“Miss you with the greatest passion!”","Michigan","The Cones of Dunshire","Saving Private Ryan","Waffles","Literally","Sweetums","Duke Silver",];
+    // Array holding all the correct answer to each question that will be used to compare to the user guess later down the code
+    var correctAnswers = ["Pawnee, IN","Johnny Karate","Calzones","Lot 48","“I still get to kill something.”","The Iron Throne from Game of Thrones","Berry","Treat Yo’ Self","Eagleton","Skim Milk","Lil’ Sebastian","Joe Biden","“Miss you with the greatest passion!”","Michigan","The Cones of Dunshire","Saving Private Ryan","Waffles","Literally","Sweetums","Duke Silver",];
 
+    // Array holding the sources to each image that will be displayed after every question
     var imageAnswers = [
-    "assets/images/q1.png","assets/images/q2.gif","assets/images/q3.gif","assets/images/q4.jpeg","assets/images/q5.gif","assets/images/q6.jpg","assets/images/q7.jpg","assets/images/q8.gif","assets/images/q9.png","assets/images/q10.gif","assets/images/q11.gif","assets/images/q12.gif","assets/images/q13.gif","assets/images/q14.png","assets/images/q15.jpg","assets/images/q16.jpg","assets/images/q17.gif","assets/images/q18.jpg","assets/images/q19.gif","assets/images/q20.gif"
+    "assets/images/q1.png","assets/images/q2.gif","assets/images/q3.gif","assets/images/q4.jpeg","assets/images/q5.gif","assets/images/q6.png","assets/images/q7.jpg","assets/images/q8.gif","assets/images/q9.png","assets/images/q10.gif","assets/images/q11.gif","assets/images/q12.gif","assets/images/q13.gif","assets/images/q14.png","assets/images/q15.jpg","assets/images/q16.jpg","assets/images/q17.gif","assets/images/q18.jpg","assets/images/q19.gif","assets/images/q20.gif"
     ]
 
+    // Array that holds a fun fact, commentary, or quote to each question that will display before the image
     var funStuff = [
-        "Did you know that Pawnee's City Hall is actually in Pasadena, CA?",
+        "Did you know that Pawnee's City Hall is actually Pasadena, California's City Hall?",
         "Ninjas, attack!!!",
-        "Talking 'bout the highway to the calzone zone!",
+        "“Talking 'bout the highway to the calzone zone!“ - Ben",
         "Leslie battled hard to renovate that lot since season 1.",
-        "Gotta love Ron...",
-        "When you play the game of thrones...you win or you die.",
+        "“I also think it’s pointless for a human to paint scenes of nature when they can go outside and stand in it.” - Ron",
+        "“When you play the game of thrones...you win or you die.“ - Ben",
         "Poor Terry...Larry?...or is it Jerry?",
         "Treat Yo' Self Beverly Hills from the final season.",
         "Big perfomaners including Jeff Tweedy, the Decemberists, Ginuwine, and Yo La Tengo!",
         "It's true though...",
-        "You’re champion little horse, and you’re dead. You’re the champion of death.",
+        "“You’re champion little horse, and you’re dead. You’re the champion of death.“ - Andy",
         "After making an appearance in Season 5, I'm sure security have their eyes constantly peeled for Leslie.",
-        "What's 5000 times better than a candle in the wind?",
+        "“What's 5000 times better than a candle in the wind?“ - Andy",
         "Yeah, that took a while for Leslie to get over.",
-        "A brand-new gaming experience...two wizards, a Maverick, the arbiter, two warriors, a corporal, and a ledgerman!",
-        "Who doens't love Herbie!",
-        "We need to remember what's important in life: friends, waffles, work. Or waffles, friends, work. Doesn't matter, but work is third.",
+        "“A brand-new gaming experience...two wizards, a Maverick, the arbiter, two warriors, a corporal, and a ledgerman!“ - Ben",
+        "Now that's one heck of a triple header...",
+        "“We need to remember what's important in life: friends, waffles, work. Or waffles, friends, work. Doesn't matter, but work is third.“ - Leslie",
         "You did, didn't you?",
-        "“Most people would say ‘the deets’, but I say ‘the tails’. Just another example of innovation.”",
+        "“Most people would say ‘the deets’, but I say ‘the tails’. Just another example of innovation.” - Tom",
         "Best twist in the entire show..."
     ]
 
+    // Array that holds the source to the various images displayed in the final results page depending on score
     var resultsImage = ["assets/images/ron.gif","assets/images/monalisa.gif","assets/images/donna.gif","assets/images/jammed.gif",]
 
 
     // Declaring all variables needed for game play
-
     var answerBlock = 1
     var questionIndex = 0
     var correct = 0;
@@ -189,26 +191,29 @@ $(document).ready(function () {
     var unanswered = 0;
     var questionTime = 10;
     var interval;
-    
-    // Click function that starts the game
-    $("#start").one("click", function() {
-        trivia ()
+
+
+     // Click function that starts the game and stops music
+    $("#start").on("click", function() {
+        $("#audio").remove(); 
+        trivia ();
+
     })
 
     // Function that displays each question through the game
     function trivia () {
 
-        resetResults ()
-
-        $("#start").text("")
-        $("#countdown").html("<p>Time Left: 10 Seconds</p>")
+        // These lines clear out content for several divs and adds the html for the countdown clock
+        resetResults();
+        $("#start").remove();
+        $("#buttonWrap").removeClass("align-items-center");
+        $("#title2").text("");
+        $("#countdown").html("<p>Time Left: 10 Seconds</p>");
         
         countdown();
     
         var answerIndex = 0
         var answerString = possibleAnswers[answerBlock];
-
-        console.log("Answer String: " + answerString);
         
         $("#question").text(questions[questionIndex]);
 
@@ -223,7 +228,6 @@ $(document).ready(function () {
         
         var answerText = $(user.target).text();
       
-        debugger;
         // If statement comparing conditions of player's answers
         // Each condition calls on function to stop and restart timer
         // Each condition calls on function to display fun fact page after question
@@ -246,8 +250,7 @@ $(document).ready(function () {
 
     })
 
-    // Function userCorrect and userIncorrect send you to the answer page
-    // Both functions recycle divs from Function trivia to mimize code length
+    // Function userCorrect sends you to the answer page when user choses correctly
     function userCorrect () {
 
         $("#resultsTitle").text("That's Correct!")
@@ -259,21 +262,22 @@ $(document).ready(function () {
         questionIndex++;
 
         // If statement with condition when last question is answered to send to results page
-        //Holds function call for 5 seconds
+        //Holds function call for 7 seconds
         if (questionIndex === questions.length){
-            setTimeout(endGame, 10000);
+            setTimeout(endGame, 7000);
             return;
         }
 
-        // setTimeout delays the progression to the next question by 5 seconds to allow user to read info on page
-        setTimeout(trivia, 10000);
+        // setTimeout delays the progression to the next question by 7 seconds to allow user to read info on page
+        setTimeout(trivia, 7000);
 
     }
 
+    // Function userIncorrect sends you to the answer page when user choses incorrectly
     function userIncorrect () {
 
         resetResults ()
-        $("#resultsTitle").text("Nope! The answer is " + correctAnswers[questionIndex])
+        $("#resultsTitle").text("Too Bad...the answer is " + correctAnswers[questionIndex])
         $("#resultsImage").html("<img src=" + imageAnswers[questionIndex] + ">")
         $("#resultsMessage").html(funStuff[questionIndex]);
 
@@ -282,31 +286,31 @@ $(document).ready(function () {
         questionIndex++;
 
         // If statement with condition when last question is answered to send to results page
-        //Holds function call for 5 seconds
+        //Holds function call for 7 seconds
         if (questionIndex === questions.length){
-            setTimeout(endGame, 10000);
+            setTimeout(endGame, 7000);
             return;
         }
 
-        // setTimeout delays the progression to the next question by 5 seconds to allow user to read info on page
-        setTimeout(trivia, 10000);
+        // setTimeout delays the progression to the next question by 7 seconds to allow user to read info on page
+        setTimeout(trivia, 7000);
     }
 
-    // Function sends user to results page when last questions is answered
+    // Function that will send user to results page when last questions is answered
     function endGame () {
 
-        console.log("Part 2: Correct: " + questionIndex);
-
         // if statement gives different results based on correct answers
+        // The difference is the image and the message
         if (correct >= 15) {
             
             resetGame ()
 
+            // Dancing Ron
             $("#resultsTitle").text("All Done!")
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
             $("#unanswered").text("Unanswered: " + unanswered);
-            $("#resultsImage").html("<img src=" + resultsImage[0] + ">");
+            $("#resultsImage").html("<img class='rounded' src=" + resultsImage[0] + ">");
             $("#resultsMessage").text("Excellent! You even made Ron Dance!");
             $("#startOver").text("Start Over")
             
@@ -329,11 +333,12 @@ $(document).ready(function () {
             
             resetGame ()
 
+            // Jean Ralphio and Mona Lisa
             $("#resultsTitle").text("All Done!")
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
             $("#unanswered").text("Unanswered: " + unanswered);
-            $("#resultsImage").html("<img src=" + resultsImage[1] + ">");
+            $("#resultsImage").html("<img class='rounded' src=" + resultsImage[1] + ">");
             $("#resultsMessage").text("Good Job! You got Jean Ralphio and Mona Lisa in the groove!");
             $("#startOver").text("Start Over")
             
@@ -360,8 +365,8 @@ $(document).ready(function () {
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
             $("#unanswered").text("Unanswered: " + unanswered);
-            $("#resultsImage").html("<img src=" + resultsImage[2] + ">");
-            $("#resultsMessage").text("She's definitely gonna be tweeting this...");
+            $("#resultsImage").html("<img class='rounded' src=" + resultsImage[2] + ">");
+            $("#resultsMessage").text("Donna's definitely gonna be tweeting this...");
             $("#startOver").text("Start Over")
             
             $("#startOver").on("click", function(){
@@ -387,7 +392,7 @@ $(document).ready(function () {
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
             $("#unanswered").text("Unanswered: " + unanswered);
-            $("#resultsImage").html("<img src=" + resultsImage[3] + ">");
+            $("#resultsImage").html("<img class='rounded' src=" + resultsImage[3] + ">");
             $("#resultsMessage").text("You just got Jammed!");
             $("#startOver").text("Start Over")
             
@@ -450,8 +455,9 @@ $(document).ready(function () {
         // When time runs out, you get send to answer page
         if (questionTime === 0) {
             unanswered++;
+           resetGame ();
             stopCountdown ();
-            userIncorrect ()
+            userIncorrect ();
         }
     }
 

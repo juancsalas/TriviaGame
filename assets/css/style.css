@@ -1,16 +1,138 @@
 body {
-    background: url(../images/background.png) 0% 0%/ cover no-repeat;
+    background: url(../images/background1.png) 0% 0%/ cover no-repeat;
 }
 
-.container-fluid {
-    width: 700px;
-    margin: auto;
-}
-
-.title {
-    background-color: #6a8065;
+/* CSS for Start Menu */
+#title{
+    background: rgb(245, 245, 245, 0.7);
     margin-top: 20px;
-    height: 100px;
-    color: #aaad9d;
-    fo
+    color:#80a25e;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+#title2 {
+    top: 125px;
+}
+
+#imgLogo {
+    width: 400px;
+    transform: rotate(-20deg);
+    margin-bottom: 15px;
+}
+
+.align-items-center {
+    height: 300px;
+}
+
+/* CSS for the Start Butoon */
+#start {
+    background-color: #80a25e;
+    border: #80a25e;
+    color: rgb(245, 245, 245);
+    font-family: monospace;
+    font-size: 25px;
+    cursor:pointer;
+    box-shadow: 0;
+    outline: none;
+}
+
+
+#start:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#start:active {
+    position: relative;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    transform: translateY(5px);
+}
+
+/* CSS for Questions Page */
+#countdown {
+    font-family: monospace;
+    font-size: 20px;
+    padding-top: 30px;
+}
+
+#question {
+    color: rgb(0, 0 , 0 , 0.75);
+    font-size: 35px;
+    padding-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#choice1, #choice2, #choice3, #choice4 {
+    color: rgb(0, 0 , 0 , 0.75);
+    font-size: 30px;
+    text-align: center;
+    cursor:pointer;
+}
+
+/* CSS to make answers change background and give effect */
+#choice1:hover, #choice2:hover, #choice3:hover, #choice4:hover {
+    background-color: rgb(245, 245, 245, 0.7);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#choice1:active, #choice2:active, #choice3:active, #choice4:active {
+    position: relative;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    transform: translateY(5px);
+}
+
+
+#resultsTitle {
+    font-size: 35px;
+    padding-top:25px;
+}
+
+#resultsMessage {
+    font-size: 25px;
+}
+
+img {
+    width: 500px;
+    margin-bottom: 20px;
+ }
+
+ #correctAnswers {
+    font-size: 20px;
+    margin-left: 150px;
+    margin-top: 5px;
+}
+
+#incorrectAnswers {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#unanswered {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+
+/* CSS for start Over button & effects */
+#startOver {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: #80a25e;
+    font-family: monospace;
+    font-size: 20px;
+    cursor:pointer;
+    outline: none;
+    z-index: ;
+}
+
+#startOver:hover {
+    background-color: rgb(245, 245, 245, 0.7);
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#startOver:active {
+    position: relative;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    transform: translateY(5px);
 }
