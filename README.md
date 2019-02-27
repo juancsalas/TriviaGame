@@ -12,5 +12,7 @@ As you progress through the trivia game, the app will keep track of your correct
 ### Development
 I took about a week to build this game and mostly used [Javascript](https://www.javascript.com/) and [JQuery](https://github.com/jquery/jquery) for the functionality aspect. I utilized [Bootstrap](https://github.com/twbs/bootstrap) and my own CSS for the design and layout.
 
+This app displays the management and use arrays, objects, and methods in various functions while using event handlers. It also displays the manipulation of HTML with customized CSS and toolkits.
+
 ### Deployment
 The app was deployed through [GitHub Pages](https://pages.github.com/) and you can check it out here: [Trivia Game: Parks and Rec Edition](https://juancsalas.github.io/TriviaGame/)
