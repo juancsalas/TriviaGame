@@ -1,6 +1,5 @@
 $(document).ready(function () {    
 
-    // Array that holds the questions
     var questions = [
         "1. What is the name of the town Parks and Recreation is set in?",
         "2. Which alter ego eventually earns Andy Dwyer a TV Show?",
@@ -24,7 +23,6 @@ $(document).ready(function () {
         "20. Who is Ron’s surprising alter ego?"
     ];
 
-    // Object that holds all possible ansswers to each question divided by array representative of the question number
     var possibleAnswers = {
         1: [  
             "Scranton, PA", 
@@ -147,15 +145,14 @@ $(document).ready(function () {
             "Roger Draper"
     ]}
 
-    // Array holding all the correct answer to each question that will be used to compare to the user guess later down the code
     var correctAnswers = ["Pawnee, IN","Johnny Karate","Calzones","Lot 48","“I still get to kill something.”","The Iron Throne from Game of Thrones","Berry","Treat Yo’ Self","Eagleton","Skim Milk","Lil’ Sebastian","Joe Biden","“Miss you with the greatest passion!”","Michigan","The Cones of Dunshire","Saving Private Ryan","Waffles","Literally","Sweetums","Duke Silver",];
 
-    // Array holding the sources to each image that will be displayed after every question
+    // Image that will be displayed after every question
     var imageAnswers = [
     "assets/images/q1.png","assets/images/q2.gif","assets/images/q3.gif","assets/images/q4.jpeg","assets/images/q5.gif","assets/images/q6.png","assets/images/q7.jpg","assets/images/q8.gif","assets/images/q9.png","assets/images/q10.gif","assets/images/q11.gif","assets/images/q12.gif","assets/images/q13.gif","assets/images/q14.png","assets/images/q15.jpg","assets/images/q16.jpg","assets/images/q17.gif","assets/images/q18.jpg","assets/images/q19.gif","assets/images/q20.gif"
     ]
 
-    // Array that holds a fun fact, commentary, or quote to each question that will display before the image
+    // Fun facts, commentary, or quotes will display before the image
     var funStuff = [
         "Did you know that Pawnee's City Hall is actually Pasadena, California's City Hall?",
         "Ninjas, attack!!!",
@@ -179,11 +176,8 @@ $(document).ready(function () {
         "Best twist in the entire show..."
     ]
 
-    // Array that holds the source to the various images displayed in the final results page depending on score
     var resultsImage = ["assets/images/ron.gif","assets/images/monalisa.gif","assets/images/donna.gif","assets/images/jammed.gif",]
 
-
-    // Declaring all variables needed for game play
     var answerBlock = 1
     var questionIndex = 0
     var correct = 0;
@@ -192,88 +186,65 @@ $(document).ready(function () {
     var questionTime = 10;
     var interval;
 
-
-     // Click function that starts the game and stops music
     $("#start").on("click", function() {
         $("#audio").remove(); 
         trivia ();
 
     })
 
-    // Function that displays each question through the game
     function trivia () {
-
-        // These lines clear out content for several divs and adds the html for the countdown clock
         resetResults();
         $("#start").remove();
         $("#buttonWrap").removeClass("align-items-center");
         $("#title2").text("");
         $("#countdown").html("<p>Time Left: 10 Seconds</p>");
-        
+    
         countdown();
     
         var answerIndex = 0
         var answerString = possibleAnswers[answerBlock];
-        
+       
         $("#question").text(questions[questionIndex]);
-
         $("#choice1").text(answerString[answerIndex]);
         $("#choice2").text(answerString[answerIndex + 1]);
         $("#choice3").text(answerString[answerIndex + 2]);
         $("#choice4").text(answerString[answerIndex + 3]);
     }
 
-    // Click function that passes user anser choice and compares to correct answer
     $("#answerRow").on("click", function(user) {
         
         var answerText = $(user.target).text();
-      
-        // If statement comparing conditions of player's answers
-        // Each condition calls on function to stop and restart timer
-        // Each condition calls on function to display fun fact page after question
-        if (answerText === correctAnswers[questionIndex]) {
 
+        if (answerText === correctAnswers[questionIndex]) {
             correct++;
             resetGame ()
             stopCountdown ();  
-            userCorrect ();
-            
+            userCorrect ();        
         }
         else {
-
             incorrect++;
             resetGame ()
             stopCountdown ();
-            userIncorrect ()
-        
+            userIncorrect ()     
         }
-
     })
 
-    // Function userCorrect sends you to the answer page when user choses correctly
     function userCorrect () {
 
         $("#resultsTitle").text("That's Correct!")
         $("#resultsImage").html("<img src=" + imageAnswers[questionIndex] + ">")
         $("#resultsMessage").html(funStuff[questionIndex]);
 
-        // This count helps Function trivia display the question/answers in the following element
         answerBlock++;
         questionIndex++;
 
-        // If statement with condition when last question is answered to send to results page
-        //Holds function call for 7 seconds
         if (questionIndex === questions.length){
             setTimeout(endGame, 7000);
             return;
         }
-
-        // setTimeout delays the progression to the next question by 7 seconds to allow user to read info on page
         setTimeout(trivia, 7000);
-
     }
 
-    // Function userIncorrect sends you to the answer page when user choses incorrectly
     function userIncorrect () {
 
         resetResults ()
@@ -281,31 +252,21 @@ $(document).ready(function () {
         $("#resultsImage").html("<img src=" + imageAnswers[questionIndex] + ">")
         $("#resultsMessage").html(funStuff[questionIndex]);
 
-        // This count helps Function trivia display the question/answers in the following element
         answerBlock++;
         questionIndex++;
 
-        // If statement with condition when last question is answered to send to results page
-        //Holds function call for 7 seconds
         if (questionIndex === questions.length){
             setTimeout(endGame, 7000);
             return;
         }
-
-        // setTimeout delays the progression to the next question by 7 seconds to allow user to read info on page
         setTimeout(trivia, 7000);
     }
 
-    // Function that will send user to results page when last questions is answered
     function endGame () {
 
-        // if statement gives different results based on correct answers
-        // The difference is the image and the message
-        if (correct >= 15) {
-            
+        if (correct >= 15) { 
+            //Final Image = Ron
             resetGame ()
-
-            // Dancing Ron
             $("#resultsTitle").text("All Done!")
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
@@ -313,9 +274,7 @@ $(document).ready(function () {
             $("#resultsImage").html("<img class='rounded' src=" + resultsImage[0] + ">");
             $("#resultsMessage").text("Excellent! You even made Ron Dance!");
             $("#startOver").text("Start Over")
-            
             $("#startOver").on("click", function(){
-
                 stopCountdown ();
                 answerBlock = 1
                 questionIndex = 0
@@ -326,14 +285,10 @@ $(document).ready(function () {
                 interval;
                 trivia();
             })
-
         }
-
         else if (correct < 15 && correct >= 10 ) {
-            
+            //Final Image = Jean Ralphio and Mona Lisa
             resetGame ()
-
-            // Jean Ralphio and Mona Lisa
             $("#resultsTitle").text("All Done!")
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
@@ -341,9 +296,7 @@ $(document).ready(function () {
             $("#resultsImage").html("<img class='rounded' src=" + resultsImage[1] + ">");
             $("#resultsMessage").text("Good Job! You got Jean Ralphio and Mona Lisa in the groove!");
             $("#startOver").text("Start Over")
-            
             $("#startOver").on("click", function(){
-
                 stopCountdown ();
                 answerBlock = 1
                 questionIndex = 0
@@ -354,23 +307,18 @@ $(document).ready(function () {
                 interval;
                 trivia();
             })
-
         }
-
-        else if (correct < 10  && correct >= 5 ) {
-            
+        else if (correct < 10  && correct >= 5 ) { 
+            //Final Image = Donna
             resetGame ()
-
             $("#resultsTitle").text("All Done!");
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
             $("#unanswered").text("Unanswered: " + unanswered);
             $("#resultsImage").html("<img class='rounded' src=" + resultsImage[2] + ">");
             $("#resultsMessage").text("Donna's definitely gonna be tweeting this...");
-            $("#startOver").text("Start Over")
-            
+            $("#startOver").text("Start Over")        
             $("#startOver").on("click", function(){
-
                 stopCountdown ();
                 answerBlock = 1
                 questionIndex = 0
@@ -381,13 +329,10 @@ $(document).ready(function () {
                 interval;
                 trivia();
             })
-
         }
-
         else {
-            
+            //Final Image = Jamm
             resetGame ()
-
             $("#resultsTitle").text("All Done!")
             $("#correctAnswers").text("Correct Answers: " + correct);
             $("#incorrectAnswers").text("Incorrect Answers: " + incorrect);
@@ -395,9 +340,7 @@ $(document).ready(function () {
             $("#resultsImage").html("<img class='rounded' src=" + resultsImage[3] + ">");
             $("#resultsMessage").text("You just got Jammed!");
             $("#startOver").text("Start Over")
-            
             $("#startOver").on("click", function(){
-
                 stopCountdown ();
                 answerBlock = 1
                 questionIndex = 0
@@ -408,12 +351,9 @@ $(document).ready(function () {
                 interval;
                 trivia();
             })
-
         }
-        
     }
     
-    // Function clears out Game text for results page to show
     function resetGame () {
         $("#countdown").text ("")
         $("#question").text("");
@@ -423,7 +363,6 @@ $(document).ready(function () {
         $("#choice4").text("");
     }
 
-    // Function clears out results page text when player starts trivia over
     function resetResults () {
         $("#resultsTitle").text("")
         $("#resultsImage").text("")
@@ -435,10 +374,7 @@ $(document).ready(function () {
         $("#startOver").text("")
     }
 
-
-
-
-    // Function countdown stopCountdown and count manage the timer
+    // Countdown Timer
     function countdown () {
         interval = setInterval(count, 1000)
     }
@@ -452,7 +388,7 @@ $(document).ready(function () {
         questionTime--
         $("#countdown").html("<p>Time Left: " + questionTime + " Seconds</p>")
 
-        // When time runs out, you get send to answer page
+        // When time runs out, send to answer page
         if (questionTime === 0) {
             unanswered++;
            resetGame ();
@@ -460,8 +396,6 @@ $(document).ready(function () {
             userIncorrect ();
         }
     }
-
-
 })
 
 

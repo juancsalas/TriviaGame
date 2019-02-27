@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
+
     <title>Trivia Game: Parks and Rec Edition</title>
 
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css"/>
@@ -14,25 +15,18 @@
 
 <body>
     <div class="container">
-
-        <!-- Div that automatically plays music when page loads -->
         <div class="themeSong">
             <iframe  id="audio" class="song" src="assets/audio/theme.mp3" allow="autoplay" style="display:none"></iframe>
         </div>
-
-        <!-- HTML for the main page befor starting trivia -->
         <div class="row">
             <h1 id="title" class="col-6 mx-auto text-center rounded">The Swanson Trivia Game of Greatness</h1>
        </div>
         <div class="row">
             <div id="title2" class="col-6 mx-auto text-center"><img id="imgLogo" class="rounded" src="assets/images/name.png"></div>
         </div>
-      
-        <!-- Divs that hold info for page after every question and at the end for the results -->
         <div class="row">
                 <h3 id="resultsTitle" class="col-7 mx-auto text-center"></h3>
         </div>
-
         <div class="row">    
             <div id="correctAnswers" class="col-3 pr-0 text-right"></div>
             <div id="incorrectAnswers" class="col-3 p-0 text-center"></div>
@@ -40,36 +34,24 @@
             <div id="startOver" class="col-2 mx-auto text-center rounded"></div>
             <div id="resultsImage" class="col-12 mx-auto text-center rounded"></div>
             <div id="resultsMessage" class="col-7 mx-auto text-center"></div>
-           
         </div>
-
-        <!-- Div that holds the countdown clock -->
+        <!-- Displays countdown clock -->
         <div class="row">
              <div id="countdown" class="col-6 mx-auto text-center"></div>
         </div>
-
-        <!-- Divs that hold the questions and answers  -->
+        <!-- Displays Q&A  -->
         <div class="row">
             <h4 id="question" class="col-6 mx-auto"></h4>
         </div>
-        
         <div id="answerRow" class="answerRow row">    
             <div id="choice1" class="col-7 mx-auto text-center rounded"></div>
             <div id="choice2" class="col-7 mx-auto text-center rounded"></div>
             <div id="choice3" class="col-7 mx-auto text-center rounded"></div>
             <div id="choice4" class="col-7 mx-auto text-center rounded"></div>
         </div>
-
-        <!-- Div holds the start button on the main page -->
         <div id="buttonWrap" class="row align-items-center">
             <button id="start" class="col-2 mx-auto text-center rounded">START</button>
         </div>
-
-
-
-
     </div>
-
-
 </body>
 </html>
